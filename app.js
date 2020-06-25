@@ -1,23 +1,50 @@
 // idevhtei toglogch
-active_player = 0;
+var active_player;
 
 // toglogchdiin tsugluulsan onoog hadgalah huvisagch
-var scores = [0, 0];
+var scores;
 
 // toglogchdiin eeljindee tsugluulj baigaa onoog hadgalah
-var round_score = 0;
+var round_score;
 
-// ehleh
-
-document.getElementById("score-0").textContent = 0;
-document.getElementById("score-1").textContent = 0;
-document.getElementById("current-0").textContent = 0;
-document.getElementById("current-1").textContent = 0;
-
-// Shoog arilgah
+// Shoog haruulan elementiig DOM-os haij oloh
 var dice_dom = document.querySelector(".dice");
-dice_dom.style.display = "none";
 
+// togloomiig ehluuleh
+initGame();
+
+function initGame() {
+    // idevhtei toglogch
+    active_player = 0;
+
+    // toglogchdiin tsugluulsan onoog hadgalah huvisagch
+    scores = [0, 0];
+
+    // toglogchdiin eeljindee tsugluulj baigaa onoog hadgalah
+    round_score = 0;
+
+    // buh onoog 0 bolgoj haruulah
+
+    document.getElementById("score-0").textContent = 0;
+    document.getElementById("score-1").textContent = 0;
+    document.getElementById("current-0").textContent = 0;
+    document.getElementById("current-1").textContent = 0;
+
+    // toglogchdiin neriig dahij uguh
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 2";
+
+    // winner classiig arilgah
+    document.querySelector(".player-0-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("winner");
+
+    document.querySelector(".player-0-panel").classList.remove("active");
+    document.querySelector(".player-1-panel").classList.remove("active");
+
+    document.querySelector(".player-0-panel").classList.add("active");
+
+    dice_dom.style.display = "none";
+}
 // roll button event
 document.querySelector(".btn-roll").addEventListener("click", function() {
     // shoo ali talaar buusniig hadgalah huvisagch. 1-6 sanamsargui
@@ -78,3 +105,6 @@ function switchToNextPlayer() {
     // shoog tur alga bolgono
     dice_dom.style.display = "none";
 }
+
+// new game button event
+document.querySelector(".btn-new").addEventListener("click", initGame);
