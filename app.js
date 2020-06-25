@@ -1,3 +1,8 @@
+// functiond ashiglagdah global variables
+
+// togloom duussan eseh
+var isPlaying;
+
 // idevhtei toglogch
 var active_player;
 
@@ -14,6 +19,8 @@ var dice_dom = document.querySelector(".dice");
 initGame();
 
 function initGame() {
+    // togloom ehelseniig hadgalah
+    isPlaying = true;
     // idevhtei toglogch
     active_player = 0;
 
@@ -47,46 +54,57 @@ function initGame() {
 }
 // roll button event
 document.querySelector(".btn-roll").addEventListener("click", function() {
-    // shoo ali talaar buusniig hadgalah huvisagch. 1-6 sanamsargui
-    var dice_number = Math.floor(Math.random() * 6 + 1);
+    // togloom duusaagui bol
+    if (isPlaying) {
+        // shoo ali talaar buusniig hadgalah huvisagch. 1-6 sanamsargui
+        var dice_number = Math.floor(Math.random() * 6 + 1);
 
-    // buusan toonoos hargalzan shoog web deer haruulna
-    dice_dom.src = "dice-" + dice_number + ".png";
-    dice_dom.style.display = "block";
+        // buusan toonoos hargalzan shoog web deer haruulna
+        dice_dom.src = "dice-" + dice_number + ".png";
+        dice_dom.style.display = "block";
 
-    // buusan too ni 1 ees ylgaati bol idevhtei toglogchiin onoog nemne
-    if (dice_number !== 1) {
-        // 1ees ylgaatai bol toglogchiin onoog nemne
-        round_score += dice_number;
-        document.getElementById(
-            "current-" + active_player
-        ).textContent = round_score;
+        // buusan too ni 1 ees ylgaati bol idevhtei toglogchiin onoog nemne
+        if (dice_number !== 1) {
+            // 1ees ylgaatai bol toglogchiin onoog nemne
+            round_score += dice_number;
+            document.getElementById(
+                "current-" + active_player
+            ).textContent = round_score;
+        } else {
+            // 1 buuval idevhiteo toglogchiin eeljiig solino
+            switchToNextPlayer();
+        }
     } else {
-        // 1 buuval idevhiteo toglogchiin eeljiig solino
-        switchToNextPlayer();
+        alert("new game tovchiig darna uu");
     }
 });
 // hold button event
 document.querySelector(".btn-hold").addEventListener("click", function() {
-    // ene toglogchiin eeljiin onoog global onoo ruu nemne
-    scores[active_player] += round_score;
-    // Delgetsen deerh onoog uurchilnu
-    document.getElementById("score-" + active_player).textContent =
-        scores[active_player];
-    // toglogch ylsan esehiig shalgana
-    if (scores[active_player] >= 10) {
-        // neriig winner bolgoj uurchilnu
-        document.getElementById("name-" + active_player).textContent = "Winner!";
-        // active classiig winner classaar solino
-        document
-            .querySelector(".player-" + active_player + "-panel")
-            .classList.add("winner");
-        document
-            .querySelector(".player-" + active_player + "-panel")
-            .classList.remove("active");
+    if (isPlaying) {
+        // ene toglogchiin eeljiin onoog global onoo ruu nemne
+        scores[active_player] += round_score;
+        // Delgetsen deerh onoog uurchilnu
+        document.getElementById("score-" + active_player).textContent =
+            scores[active_player];
+        // toglogch ylsan esehiig shalgana
+        if (scores[active_player] >= 10) {
+            // neriig winner bolgoj uurchilnu
+            document.getElementById("name-" + active_player).textContent = "Winner!";
+            // active classiig winner classaar solino
+            document
+                .querySelector(".player-" + active_player + "-panel")
+                .classList.add("winner");
+            document
+                .querySelector(".player-" + active_player + "-panel")
+                .classList.remove("active");
+            // togloom duussaniig hadgalah
+            isPlaying = false;
+        } else {
+            // toglogchiin eeljiig solino
+            switchToNextPlayer();
+        }
     } else {
-        // toglogchiin eeljiig solino
-        switchToNextPlayer();
+        alert("new game tovchiig darna uu");
     }
 });
 
