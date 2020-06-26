@@ -87,7 +87,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
         document.getElementById("score-" + active_player).textContent =
             scores[active_player];
         // toglogch ylsan esehiig shalgana
-        if (scores[active_player] >= 10) {
+        if (scores[active_player] >= 100) {
             // neriig winner bolgoj uurchilnu
             document.getElementById("name-" + active_player).textContent = "Winner!";
             // active classiig winner classaar solino
