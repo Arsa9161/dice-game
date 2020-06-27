@@ -145,7 +145,9 @@ i {
     vertical-align: text-top;
     margin-top: -4px;
     transition: margin 0.3s;
-    /* border: 1px solid black; */
+    width: 32px;
+    height: 40px;
+    border: 1px solid black;
 }
 
 .btn-new {
