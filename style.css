@@ -147,7 +147,7 @@ i {
     transition: margin 0.3s;
     width: 32px;
     height: 40px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .btn-new {
